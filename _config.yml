@@ -49,15 +49,15 @@ author:
 # Add links to the sidebar.
 menu:
   - title:             LinearAlgebra
-    url:               /LinearAlgebra/
+    url:               /Linear-Algebra/
   - title:             Probability
     url:               /Probability/
   - title:             DataStructure
-    url:               /DataStructure/
+    url:               /Data-Structure/
   - title:             Algorithm
     url:               /Algorithm/
   - title:             CS Major
-    url:               /csMajor/
+    url:               /CS-Major/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
