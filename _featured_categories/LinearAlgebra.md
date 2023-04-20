@@ -3,14 +3,14 @@
 layout: list
 
 # The title of the tag's page.
-title: MIT 18.06
+title: Linear Algebra
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: 1806
+slug: linearalgebra
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  Linear Algebra lecture MIT 18.06
+  Gilbert Strang 교수님의 선형대수 강의 정리
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
