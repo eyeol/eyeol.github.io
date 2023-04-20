@@ -49,7 +49,7 @@ author:
 # Add links to the sidebar.
 menu:
   - title:             Linear Algebra
-    url:               /LinearAlgebra/
+    url:               /Linear Algebra/
   - title:             Probability
     url:               /Probability/
   - title:             Data Structure
