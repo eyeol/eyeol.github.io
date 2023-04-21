@@ -49,7 +49,7 @@ author:
 # Add links to the sidebar.
 menu:
   - title:             Linear Algebra
-    url:               /linearalgebra/
+    url:               /linear_algebra/
   - title:             Probability
     url:               /Probability/
   - title:             Data Structure
@@ -294,11 +294,11 @@ hydejack:
 
 collections:
   featured_categories:
-    permalink:         /:category/
+    permalink:         /:title/
     output:            true
 
   featured_tags:
-    permalink:         /:categories/:category/
+    permalink:         /:categories/:title/
     output:            true
 
   projects:
