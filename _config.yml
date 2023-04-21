@@ -294,11 +294,11 @@ hydejack:
 
 collections:
   featured_categories:
-    permalink:         /:title/
+    permalink:         /:name/
     output:            true
 
   featured_tags:
-    permalink:         /:categories/:title/
+    permalink:         /:categories/:name/
     output:            true
 
   projects:
