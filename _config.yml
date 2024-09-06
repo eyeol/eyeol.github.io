@@ -60,7 +60,7 @@ menu:
     url:               /CS_Major/
     submenu:
       - titles:          Transformer
-        url:             /DeepLearning/Transformer/
+        url:             /deep_learning/transformer/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
