@@ -57,7 +57,7 @@ menu:
   - title:             Algorithm
     url:               /Algorithm/
   - title:             DeepLearning
-    url:               /CS_Major/
+    url:               /deeplearning/
     submenu:
       - titles:          Transformer
         url:             /deeplearning/transformer/
