@@ -92,7 +92,10 @@ remote_theme: hydecorp/hydejack@v9
 
 # Customizaton
 # ----------------------------------------------------------------------------------------
- 
+
+# Favicon change to shpeal
+favicon: /favicon/spheal.ico
+
 # Sidebar image and theme color of the site.
 accent_image:          /assets/img/playground.jpg
 accent_color:          rgb(79,177,186)
