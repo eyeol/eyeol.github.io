@@ -51,7 +51,7 @@ menu:
   - title:             Linear Algebra
     url:               /linearalgebra/
   - title:             Probability
-    url:               /Probability/
+    url:               /probability/
   - title:             Data Structure
     url:               /DataStructure/
   - title:             Algorithm
@@ -59,8 +59,8 @@ menu:
   - title:             DeepLearning
     url:               /deeplearning/
     submenu:
-      - titles:          Transformer
-        url:             /deeplearning/transformer/
+      - titles:        Transformer
+        url:           /transformer/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
