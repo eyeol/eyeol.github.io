@@ -56,7 +56,7 @@ menu:
     url:               /DataStructure/
   - title:             Algorithm
     url:               /Algorithm/
-  - title:             DeepLearning
+  - title:             Deep Learning
     url:               /deeplearning/
     submenu:
       - titles:        Transformer
