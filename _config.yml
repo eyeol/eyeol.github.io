@@ -59,7 +59,7 @@ menu:
   - title:             Deep Learning
     url:               /deeplearning/
     submenu:
-      - titles:        Transformer
+      - title:         Transformer
         url:           /transformer/
 
 # Add links to the footer.
