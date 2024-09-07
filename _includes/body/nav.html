@@ -4,9 +4,9 @@
       {% assign url = node.url | default: node.href %}
       {% assign count = count | plus: 1 %}
       <li>
-        <div class="menu-wrapper">
+        <div class="menu-wrapper" style="padding-right: 10px;"> <!-- 여백 추가 -->
           {% if node.submenu %}
-            <button class="spread-btn" onclick="javascript:spread({{count}})">
+            <button class="spread-btn" style="margin-right: 5px;" onclick="javascript:spread({{count}})"> <!-- 버튼에 여백 추가 -->
               <span id="spread-icon-{{count}}" class="material-icons">arrow_right</span>
             </button>
           {% endif %}
@@ -20,7 +20,7 @@
           </a>
         </div>
         {% if node.submenu %}
-          <div class="menu-wrapper">
+          <div class="menu-wrapper" style="padding-right: 10px;">
             <input type="checkbox" id="folder-checkbox-{{count}}">
             <ul>
             {% for subnode in node.submenu %}
