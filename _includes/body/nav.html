@@ -1,10 +1,9 @@
-<span class="sr-only">{{ site.data.strings.navigation | default:"Navigation" }}{{ site.data.strings.colon | default:":" }}</span>
-<ul>
+<ul style="text-align: center;">
   {% if site.menu %}
     {% for node in site.menu %}
       {% assign url = node.url | default: node.href %}
       {% assign count = count | plus: 1 %}
-      <li>
+      <li style="display: inline-block; margin: 0 10px;">
         <div class="menu-wrapper">
           {% if node.submenu %}
             <button class="spread-btn" onclick="javascript:spread({{count}})">
@@ -40,27 +39,6 @@
       </li>
     {% endfor %}
   {% else %}
-    {% assign pages = site.pages | where: "menu", true %}
-    {% assign documents = site.documents | where: "menu", true %}
-    {% assign nodes = pages | concat: documents | sort: "order" %}
-
-    {% for node in nodes %}
-      {% unless node.redirect_to %}
-        <li>
-          <a
-            {% if forloop.first %}id="_navigation"{% endif %}
-            href="{{ node.url | relative_url }}"
-            class="sidebar-nav-item"
-            {% if node.rel %}rel="{{ node.rel }}"{% endif %}
-            >
-            {{ node.title }}
-          </a>
-        </li>
-      {% else %}
-        <li>
-          <a href="{{ node.redirect_to }}" class="sidebar-nav-item external">{{ node.title }}</a>
-        </li>
-      {% endunless %}
-    {% endfor %}
+    ...
   {% endif %}
 </ul>
