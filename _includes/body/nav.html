@@ -1,4 +1,4 @@
-<ul style="position: relative; left: 10%;">
+<ul style="position: relative; left: 20px;">
   {% if site.menu %}
     {% for node in site.menu %}
       {% assign url = node.url | default: node.href %}
@@ -6,7 +6,7 @@
       <li>
         <div class="menu-wrapper">
           {% if node.submenu %}
-            <button class="spread-btn" onclick="javascript:spread({{count}})" style="margin-right: 10px;">
+            <button class="spread-btn" onclick="javascript:spread({{count}})">
               <span id="spread-icon-{{count}}" class="material-icons">arrow_right</span>
             </button>
           {% endif %}
@@ -39,6 +39,27 @@
       </li>
     {% endfor %}
   {% else %}
-    ...
+    {% assign pages = site.pages | where: "menu", true %}
+    {% assign documents = site.documents | where: "menu", true %}
+    {% assign nodes = pages | concat: documents | sort: "order" %}
+
+    {% for node in nodes %}
+      {% unless node.redirect_to %}
+        <li>
+          <a
+            {% if forloop.first %}id="_navigation"{% endif %}
+            href="{{ node.url | relative_url }}"
+            class="sidebar-nav-item"
+            {% if node.rel %}rel="{{ node.rel }}"{% endif %}
+            >
+            {{ node.title }}
+          </a>
+        </li>
+      {% else %}
+        <li>
+          <a href="{{ node.redirect_to }}" class="sidebar-nav-item external">{{ node.title }}</a>
+        </li>
+      {% endunless %}
+    {% endfor %}
   {% endif %}
 </ul>
