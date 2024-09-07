@@ -20,7 +20,7 @@
 lang:                  ko-KR, en-US
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 eyeol's Blog
+title:                 Battle Frontier
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
@@ -28,7 +28,7 @@ description:           >
   eyeol's Life Log.
 
 # A shorter description for the sidebar.
-tagline:               Follow Your Inner Compass
+tagline:               eyeol's Dev/Life Log
 
 # A list of keywords for your blog
 keywords:              []
