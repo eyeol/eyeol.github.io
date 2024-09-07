@@ -1,9 +1,9 @@
-<ul style="text-align: center;">
+<ul style="position: relative; left: 10%;">
   {% if site.menu %}
     {% for node in site.menu %}
       {% assign url = node.url | default: node.href %}
       {% assign count = count | plus: 1 %}
-      <li style="display: inline-block; margin: 0 10px;">
+      <li>
         <div class="menu-wrapper">
           {% if node.submenu %}
             <button class="spread-btn" onclick="javascript:spread({{count}})">
