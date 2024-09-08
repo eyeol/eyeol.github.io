@@ -53,14 +53,14 @@ menu:
   - title:             Probability
     url:               /probability/
   - title:             Data Structure
-    url:               /DataStructure/
+    url:               /datastructure/
   - title:             Algorithm
-    url:               /Algorithm/
+    url:               /algorithm/
   - title:             Deep Learning
     url:               /deeplearning/
     submenu:
       - title:         Basics
-        url:           /basics/
+        url:           /deeplearning/basics/
       - title:         NLP
         url:           /deeplearning/nlp/
 
