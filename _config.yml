@@ -61,7 +61,6 @@ menu:
     submenu:
       - title:         Basics
         url:           /basics/
-    submenu:
       - title:         NLP
         url:           /nlp/
 
