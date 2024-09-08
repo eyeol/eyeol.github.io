@@ -10,7 +10,7 @@ slug: nlp
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  RNN, Attention, 트랜스포머 등 자연어처리 모델 관련
+  RNN, Attention, Transformer 등 자연어처리 모델 관련
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
