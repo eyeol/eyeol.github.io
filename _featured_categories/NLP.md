@@ -8,6 +8,9 @@ title: NLP
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
 slug: nlp
 
+# Permalink
+permalink: /deeplearning/nlp/
+
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
   RNN, Attention, Transformer 등 자연어처리 모델 관련
