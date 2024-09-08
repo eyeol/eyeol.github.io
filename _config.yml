@@ -62,7 +62,7 @@ menu:
       - title:         Basics
         url:           /basics/
       - title:         NLP
-        url:           /nlp/
+        url:           /deeplearning/nlp/
 
 
 # Add links to the footer.
