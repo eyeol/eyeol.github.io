@@ -8,7 +8,7 @@ author1:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    딥러닝 엔지니어를 목표로 공부하고 있습니다. <br>
+    딥러닝 엔지니어를 목표로 공부하고 있습니다 <br>
     선형대수, 알고리즘, 딥러닝, MLOps Let's Go <br>
     
 
