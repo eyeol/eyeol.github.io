@@ -56,3 +56,43 @@
     display: block;
   }
 }
+
+
+/* 모바일 대응을 위한 미디어 쿼리 추가 */
+@media (max-width: 768px) {
+  .dl-table {
+    a {
+      @supports ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
+        text-underline-offset: 0.5rem;
+      }
+      @supports not ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
+        padding-bottom: 0.25rem;
+      }
+    }
+  }
+
+  .btn, .gumroad-button {
+    margin: 0.5rem 0;
+  }
+
+  .sidebar-sticky {
+    position: relative; /* 모바일에서는 상대 위치로 변경 */
+    height: auto; /* 높이를 자동으로 조정 */
+    padding-top: 3%;
+  }
+
+  .sidebar-about {
+    padding-bottom: 5%;
+  }
+
+  .spread-btn {
+    left: 0; /* 모바일에서는 요소가 화면 밖으로 나가지 않도록 */
+    padding-top: 2px;
+  }
+
+  .menu-wrapper {
+    display: block; /* 모바일에서는 flex를 block으로 변경 */
+    margin-left: 5%;
+    margin-bottom: 5%;
+  }
+}
