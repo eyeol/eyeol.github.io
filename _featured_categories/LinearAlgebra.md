@@ -10,7 +10,7 @@ slug: linearalgebra
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  Gilbert Strang 교수님의 선형대수 강의 정리
+  MIT 18.06 선형대수 강의 정리
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
