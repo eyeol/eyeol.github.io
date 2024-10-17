@@ -1,14 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap");
+
 .dl-table {
   a {
-    @supports ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
-      text-underline-offset: .8rem;
+    @supports (
+      (text-decoration-thickness: initial) and (text-underline-offset: initial)
+    ) {
+      text-underline-offset: 0.8rem;
     }
-    @supports not ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
-      padding-bottom: .45rem;
+    @supports not (
+      (text-decoration-thickness: initial) and (text-underline-offset: initial)
+    ) {
+      padding-bottom: 0.45rem;
     }
   }
 
-  .btn, .gumroad-button  {
+  .btn,
+  .gumroad-button {
     margin: 1rem 0;
   }
 }
@@ -20,9 +27,9 @@
   position: absolute;
 }
 .sidebar-about {
-  padding-bottom:10%;
+  padding-bottom: 10%;
 }
-.spread-btn{
+.spread-btn {
   left: -2.1%;
   position: absolute;
   padding: 0;
@@ -33,26 +40,26 @@
   cursor: pointer;
 }
 
-.spread-btn:hover{
+.spread-btn:hover {
   color: grey;
 }
 
-.menu-wrapper{
+.menu-wrapper {
   display: flex;
   text-align: left;
   margin-left: 10%;
   margin-bottom: 0%;
-  
-  input[type=checkbox]{
+
+  input[type="checkbox"] {
     display: none;
   }
-  
-  input[type=checkbox] ~ ul{
+
+  input[type="checkbox"] ~ ul {
     display: none;
     list-style: none;
   }
-  
-  input[type=checkbox]:checked ~ ul{
+
+  input[type="checkbox"]:checked ~ ul {
     display: block;
   }
 }
