@@ -47,14 +47,14 @@ author:
 
 # Add links to the sidebar.
 menu:
+  - title: Algorithm
+    url: /algorithm/
+  - title: Data Structure
+    url: /datastructure/
   - title: Linear Algebra
     url: /linearalgebra/
   - title: Probability
     url: /probability/
-  - title: Data Structure
-    url: /datastructure/
-  - title: Algorithm
-    url: /algorithm/
   - title: Deep Learning
     url: /deeplearning/
     submenu:
