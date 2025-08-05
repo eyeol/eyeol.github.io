@@ -2,31 +2,29 @@
 # Must be the same as `author` in `_config.yml`.
 # Change `author1` to your shortname.
 author1:
-  name:              E-YEOL DAN
-  email:             daniel4906@korea.ac.kr
+  name: E-YEOL DAN
+  email: daniel4906@korea.ac.kr
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
-  about:             |
-    딥러닝 엔지니어를 목표로 공부하고 있습니다 <br>
-    선형대수, 알고리즘, 딥러닝, MLOps Let's Go <br>
-    
+  about: |
+    알고리즘 고수가 될거야 <br>
 
   # This photo will be used in the about section
   picture:
-    path:            /assets/img/WinThePrize.png
+    path: /assets/img/WinThePrize.png
     # srcset is optional, but can be used to provide higher res versions for retina displays
     #srcset:
-      #1x:            https://via.placeholder.com/128x128
-      #2x:            https://via.placeholder.com/256x256
+    #1x:            https://via.placeholder.com/128x128
+    #2x:            https://via.placeholder.com/256x256
 
   # Social media icons in sidebar
   # Comment/uncommet to show/hide
   # Rearrange to change the order in which they appear
   social:
     #twitter:         <username>
-    github:          eyeol
-    email:           daniel4906@korea.ac.kr
+    github: eyeol
+    email: daniel4906@korea.ac.kr
     # rss:             https://<url>/feed.xml
     # facebook:        <username>
     # google:          <number>
@@ -66,15 +64,15 @@ author1:
 
 # Another author (optional)
 author2:
-  name:              <firtname> <lastname>
-  email:             <mail@domain.tld>
-  about:             |
+  name: <firtname> <lastname>
+  email: <mail@domain.tld>
+  about: |
     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
     Open `_data/authors.yml` to edit this text.
 
-  picture:           https://placehold.it/128x128
-  twitter:           <username>
-  github:            <username>
+  picture: https://placehold.it/128x128
+  twitter: <username>
+  github: <username>

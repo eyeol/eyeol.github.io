@@ -13,7 +13,7 @@ permalink: /deeplearning/basics/
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  딥러닝의 개요, 기본 개념들, 신경망의 기본 구조
+  기초가 되는 내용들
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true

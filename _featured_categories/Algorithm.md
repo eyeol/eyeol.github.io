@@ -10,7 +10,7 @@ slug: algorithm
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  MIT 6.006 알고리즘 강의 정리
+  알고리즘 공부 일지
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
