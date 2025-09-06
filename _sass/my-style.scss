@@ -63,3 +63,44 @@
     display: block;
   }
 }
+
+// Sticky TOC
+.markdown-body .toc,
+.toc-wrapper {
+  position: sticky;
+  top: 2rem;
+  z-index: 100;
+  background: var(--body-bg);
+  border-left: 3px solid var(--accent-color);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.toc {
+  position: sticky;
+  top: 2rem;
+  z-index: 100;
+}
+
+// TOC 스타일링
+.toc ul {
+  list-style: none;
+  padding-left: 1rem;
+  
+  li {
+    margin: 0.25rem 0;
+    
+    a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      
+      &:hover {
+        color: var(--accent-color);
+        text-decoration: underline;
+      }
+    }
+  }
+}
