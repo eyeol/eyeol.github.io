@@ -2,3 +2,12 @@
 ._.DS_Store
 **/.DS_Store
 **/._.DS_Store
+
+# Ruby
+.bundle/
+.ruby-version
+Gemfile.lock
+vendor/
+
+# Jekyll
+_site/
