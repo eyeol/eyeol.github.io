@@ -1,0 +1,48 @@
+---
+// src/components/Wave.astro
+---
+<div class="waves" aria-hidden="true">
+  <svg class="waves-svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+      <path id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+    </defs>
+    <g class="parallax">
+      <use href="#gentle-wave" x="48" y="0"  class="l1"></use>
+      <use href="#gentle-wave" x="48" y="3"  class="l2"></use>
+      <use href="#gentle-wave" x="48" y="5"  class="l3"></use>
+      <use href="#gentle-wave" x="48" y="7"  class="l4"></use>
+    </g>
+  </svg>
+</div>
+
+<style>
+.waves {
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 10vh; max-height: 9.375rem; min-height: 3.125rem; width: 100%;
+  pointer-events: none; /* ← 추가 권장 */
+}
+@media (min-width: 768px){ .waves { height: 15vh; } }
+
+.waves-svg { width: 100%; height: 100%; display: block; }
+
+.parallax use {
+  /* 사이트 배경 변수로 채워 자연스럽게 블렌딩 (없으면 흰색 폴백) */
+  fill: var(--background-color, var(--c-bg, #fff));
+  animation: wave 25s cubic-bezier(0.5, 0.5, 0.45, 0.5) infinite;
+  will-change: transform;
+}
+.l1 { opacity:.25; animation-duration:7s;  animation-delay:-2s; }
+.l2 { opacity:.50; animation-duration:10s; animation-delay:-3s; }
+.l3 { opacity:.75; animation-duration:13s; animation-delay:-4s; }
+.l4 { opacity:1;    animation-duration:20s; animation-delay:-5s; }
+
+@keyframes wave {
+  0% { transform: translate3d(-90px,0,0); }
+  100% { transform: translate3d(85px,0,0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax use { animation: none; }
+}
+</style>
