@@ -4,7 +4,7 @@ published: 2025-11-04
 description: 커버 사진이 포함된 포스팅 테스트
 image: "./images/coffee.png"
 tags: [Test, Coffee]
-category: Algorithm
+category: Algorithms
 draft: false
 ---
 
