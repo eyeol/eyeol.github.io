@@ -29,3 +29,7 @@ yarn.lock
 # ide
 .idea
 *.iml
+
+# claude
+CLAUDE.md
+.claude/
