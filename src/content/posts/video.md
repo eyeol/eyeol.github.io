@@ -4,7 +4,7 @@ published: 2025-11-03
 description: 비디오가 포함된 포스팅 테스트
 tags: [Video, Test]
 category: Deeplearning
-draft: false
+draft: true
 ---
 
 Just copy the embed code from YouTube or other platforms, and paste it in the markdown file.

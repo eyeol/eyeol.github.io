@@ -5,7 +5,7 @@ description: 커버 사진이 포함된 포스팅 테스트
 image: "./images/coffee.png"
 tags: [Test, Coffee]
 category: Algorithms
-draft: false
+draft: true
 ---
 
 This blog template is built with [Astro](https://astro.build/). For the things that are not mentioned in this guide, you may find the answers in the [Astro Docs](https://docs.astro.build/).
@@ -20,7 +20,7 @@ description: This is the first post of my new Astro blog.
 image: ./cover.jpg
 tags: [Foo, Bar]
 category: Front-end
-draft: false
+draft: true
 ---
 ```
 
