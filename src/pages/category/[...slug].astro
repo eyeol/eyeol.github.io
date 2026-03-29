@@ -162,21 +162,22 @@ const years = Object.keys(groupedByYear)
         ))}
     </div>
     </category-view-toggle>
-</MainGridLayout>
-
-<script>
+    <script is:inline>
     class CategoryViewToggle extends HTMLElement {
-        constructor() {
-            super();
+        connectedCallback() {
+            if (this.dataset.initialized === 'true') return;
+            this.dataset.initialized = 'true';
 
             const btnCard = this.querySelector('[data-view="card"]');
             const btnList = this.querySelector('[data-view="list"]');
             const viewCard = this.querySelector('[data-panel="card"]');
             const viewList = this.querySelector('[data-panel="list"]');
 
+            if (!btnCard || !btnList || !viewCard || !viewList) return;
+
             const activeStyle = 'color: var(--primary); background-color: var(--btn-plain-bg-hover);';
 
-            function setView(mode: string, animate: boolean = false) {
+            function setView(mode, animate = false) {
                 const showPanel = mode === 'card' ? viewCard : viewList;
                 const hidePanel = mode === 'card' ? viewList : viewCard;
                 const activeBtn = mode === 'card' ? btnCard : btnList;
@@ -184,13 +185,13 @@ const years = Object.keys(groupedByYear)
 
                 hidePanel?.classList.add('hidden');
                 showPanel?.classList.remove('hidden');
-                if (activeBtn) (activeBtn as HTMLElement).style.cssText = activeStyle;
-                if (inactiveBtn) (inactiveBtn as HTMLElement).style.cssText = '';
+                if (activeBtn) activeBtn.style.cssText = activeStyle;
+                if (inactiveBtn) inactiveBtn.style.cssText = '';
 
                 if (animate && showPanel) {
-                    (showPanel as HTMLElement).style.animation = 'none';
-                    void (showPanel as HTMLElement).offsetWidth;
-                    (showPanel as HTMLElement).style.animation = '300ms fade-in-up forwards';
+                    showPanel.style.animation = 'none';
+                    void showPanel.offsetWidth;
+                    showPanel.style.animation = '300ms fade-in-up forwards';
                 }
 
                 localStorage.setItem('category-view-mode', mode);
@@ -202,8 +203,8 @@ const years = Object.keys(groupedByYear)
                 setView('list');
             }
 
-            btnCard?.addEventListener('click', () => setView('card', true));
-            btnList?.addEventListener('click', () => setView('list', true));
+            btnCard.addEventListener('click', () => setView('card', true));
+            btnList.addEventListener('click', () => setView('list', true));
         }
     }
 
@@ -211,3 +212,4 @@ const years = Object.keys(groupedByYear)
         customElements.define('category-view-toggle', CategoryViewToggle);
     }
 </script>
+</MainGridLayout>
