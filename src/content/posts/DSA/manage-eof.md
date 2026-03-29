@@ -2,7 +2,7 @@
 title: 파이썬에서 EOF 처리
 published: 2026-01-05
 description: EOF 처리 패턴 정리
-tags: [Implementation, I/O]
+tags: [PS, EOF]
 category: DSA
 draft: false
 ---
