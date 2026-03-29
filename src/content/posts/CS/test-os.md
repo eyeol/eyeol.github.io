@@ -5,7 +5,7 @@ description: "서브카테고리 테스트용"
 tags: []
 category: CS
 subcategory: OS
-draft: false
+draft: true
 ---
 
 ## 테스트
