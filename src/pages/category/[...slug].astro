@@ -176,6 +176,7 @@ const years = Object.keys(groupedByYear)
             if (!btnCard || !btnList || !viewCard || !viewList) return;
 
             const activeStyle = 'color: var(--primary); background-color: var(--btn-plain-bg-hover);';
+            const storage = sessionStorage;
 
             function setView(mode, animate = false) {
                 const showPanel = mode === 'card' ? viewCard : viewList;
@@ -194,11 +195,11 @@ const years = Object.keys(groupedByYear)
                     showPanel.style.animation = '300ms fade-in-up forwards';
                 }
 
-                localStorage.setItem('category-view-mode', mode);
+                storage.setItem('category-view-mode', mode);
             }
 
             // Restore saved view mode
-            const saved = localStorage.getItem('category-view-mode');
+            const saved = storage.getItem('category-view-mode');
             if (saved === 'list') {
                 setView('list');
             }
