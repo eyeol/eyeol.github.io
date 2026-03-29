@@ -9,19 +9,14 @@ draft: true
 
 ## 핵심 개념
 
-<!-- 힙이 왜 필요한지, 어떤 문제를 해결하는지 -->
-
 
 
 ## 힙 속성 (Heap Property)
 
-<!-- Max-Heap / Min-Heap 속성 정의 -->
-
 ## 힙 연산
 
-<!-- MAX-HEAPIFY, BUILD-MAX-HEAP 등 핵심 연산과 시간복잡도 -->
-
 ### 코드
+
 #### heapify
 
 ```python
