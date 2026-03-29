@@ -2,8 +2,8 @@
 title: 알고리즘에 대한 이해
 published: 2026-03-20
 description: "알고리즘의 정의, 정확성과 효율성, 점근 표기법(O, Ω, Θ)"
-tags: [DSA, CLRS]
-category: DSA
+tags: [Algorithm, CLRS]
+category: Algorithm
 draft: true
 ---
 

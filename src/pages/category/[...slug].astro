@@ -184,8 +184,8 @@ const years = Object.keys(groupedByYear)
 
                 hidePanel?.classList.add('hidden');
                 showPanel?.classList.remove('hidden');
-                (activeBtn as HTMLElement).style.cssText = activeStyle;
-                (inactiveBtn as HTMLElement).style.cssText = '';
+                if (activeBtn) (activeBtn as HTMLElement).style.cssText = activeStyle;
+                if (inactiveBtn) (inactiveBtn as HTMLElement).style.cssText = '';
 
                 if (animate && showPanel) {
                     (showPanel as HTMLElement).style.animation = 'none';

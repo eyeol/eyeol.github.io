@@ -2,8 +2,8 @@
 title: "힙 (Heap)"
 published: 2026-02-18
 description: "Heap - Heap Sort, Priority Queue"
-tags: ["Algorithms", "Heap", "CLRS"]
-category: DSA
+tags: [Algorithm, Heap, CLRS]
+category: Algorithm
 draft: true
 ---
 

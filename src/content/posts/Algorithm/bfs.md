@@ -2,8 +2,8 @@
 title: BFS
 published: 2025-11-25
 description: BFS
-tags: [DSA, BFS]
-category: DSA
+tags: [Algorithm, BFS, CLRS]
+category: Algorithm
 draft: true
 ---
 

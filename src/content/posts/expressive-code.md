@@ -2,7 +2,7 @@
 title: Code Post Test
 published: 2025-11-02
 description: 코드가 포함된 포스팅 테스트
-tags: [Code, Test]
+tags: []
 category: Legacy
 draft: true
 ---

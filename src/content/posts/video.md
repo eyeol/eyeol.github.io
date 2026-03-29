@@ -2,7 +2,7 @@
 title: Include Video in the Posts
 published: 2025-11-03
 description: 비디오가 포함된 포스팅 테스트
-tags: [Video, Test]
+tags: []
 category: Legacy
 draft: true
 ---

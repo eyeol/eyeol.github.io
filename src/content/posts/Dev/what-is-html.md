@@ -2,7 +2,7 @@
 title: "HTML 개념"
 published: 2026-03-29
 description: "HTML의 의미와 기본 구조"
-tags: []
+tags: [HTML, Frontend]
 category: Dev
 subcategory: frontend
 draft: false

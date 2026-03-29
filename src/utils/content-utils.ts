@@ -66,6 +66,8 @@ export async function getTagList(): Promise<Tag[]> {
 
 	// sort tags
 	const keys: string[] = Object.keys(countMap).sort((a, b) => {
+		const diff = countMap[b] - countMap[a];
+		if (diff !== 0) return diff;
 		return a.toLowerCase().localeCompare(b.toLowerCase());
 	});
 
@@ -150,8 +152,8 @@ export async function getCategoryTree(): Promise<CategoryNode[]> {
 
 	const CATEGORY_ORDER: Record<string, number> = {
 		Diary: 0,
-		CS: 1,
-		DSA: 2,
+		Algorithm: 1,
+		CS: 2,
 		AI: 3,
 		Dev: 4,
 	};
