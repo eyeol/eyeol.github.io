@@ -21,14 +21,21 @@ export function getTagUrl(tag: string): string {
 	return url(`/archive/?tag=${encodeURIComponent(tag.trim())}`);
 }
 
-export function getCategoryUrl(category: string | null): string {
+export function getCategoryUrl(
+	category: string | null,
+	subcategory?: string | null,
+): string {
 	if (
 		!category ||
 		category.trim() === "" ||
 		category.trim().toLowerCase() === i18n(I18nKey.uncategorized).toLowerCase()
 	)
 		return url("/archive/?uncategorized=true");
-	return url(`/archive/?category=${encodeURIComponent(category.trim())}`);
+	const base = `/category/${category.trim()}/`;
+	if (subcategory?.trim()) {
+		return url(`${base}${subcategory.trim()}/`);
+	}
+	return url(base);
 }
 
 export function getDir(path: string): string {

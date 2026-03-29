@@ -3,7 +3,8 @@ title: Google의 TPU는 어떤 녀석인가
 published: 2025-11-26
 description: 기술 트렌드 & 지식 교류 스터디 1주차
 tags: [WT3, TPU]
-category: Diary
+category: Dev
+subcategory: study
 draft: false
 ---
 

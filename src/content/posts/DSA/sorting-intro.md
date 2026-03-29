@@ -3,7 +3,7 @@ title: 정렬 알고리즘 개요
 published: 2026-02-21
 description: "선택 정렬, 버블 정렬 — 수도코드, 안정성(Stability)"
 tags: [DSA, 정렬, CLRS]
-category: Algorithms
+category: DSA
 draft: true
 ---
 

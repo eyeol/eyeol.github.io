@@ -3,7 +3,8 @@ title: "정보이론: 정보량과 엔트로피"
 published: 2026-02-18
 description: "딥러닝에 필요한 정보이론 - 정보량, 엔트로피, 크로스 엔트로피, KL 다이버전스"
 tags: ["deep-learning", "information-theory"]
-category: "Deep-Learning"
+category: AI
+subcategory: Foundation
 draft: true
 ---
 

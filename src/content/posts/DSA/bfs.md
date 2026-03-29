@@ -3,7 +3,7 @@ title: BFS
 published: 2025-11-25
 description: BFS
 tags: [DSA, BFS]
-category: Algorithms
+category: DSA
 draft: true
 ---
 
