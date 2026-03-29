@@ -63,16 +63,9 @@ export const profileConfig: ProfileConfig = {
 			url: "https://github.com/eyeol/",
 		},
 		{
-			name: "Notion",
-			icon: "tabler:brand-notion", // Visit https://icones.js.org/ for icon codes
-			// You will need to install the corresponding icon set if it's not already included
-			// `pnpm add @iconify-json/<icon-set-name>`
-			url: "https://eyeol.notion.site/",
-		},
-		{
-			name: "Linkedin",
-			icon: "tabler:brand-linkedin",
-			url: "https://www.linkedin.com/in/eyeol/",
+			name: "Mail",
+			icon: "tabler:mail",
+			url: "mailto:eyeol.dev@gmail.com",
 		},
 	],
 };
