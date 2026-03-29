@@ -8,10 +8,8 @@ import ButtonTag from "../control/ButtonTag.astro";
 import WidgetLayout from "./WidgetLayout.astro";
 
 const tags = await getTagList();
-
-const COLLAPSED_HEIGHT = "7.5rem";
-
-const isCollapsed = tags.length >= 20;
+const INITIAL_COUNT = 7;
+const hasMore = tags.length > INITIAL_COUNT;
 
 interface Props {
 	class?: string;
@@ -20,12 +18,47 @@ interface Props {
 const className = Astro.props.class;
 const style = Astro.props.style;
 ---
-<WidgetLayout name={i18n(I18nKey.tags)} id="tags" isCollapsed={isCollapsed} collapsedHeight={COLLAPSED_HEIGHT} class={className} style={style}>
+<WidgetLayout name={i18n(I18nKey.tags)} id="tags" class={className} style={style}>
     <div class="flex gap-2 flex-wrap">
-        {tags.map(t => (
-            <ButtonTag href={getTagUrl(t.name)} label={`View all posts with the ${t.name.trim()} tag`}>
-                {t.name.trim()}
-            </ButtonTag>
+        {tags.map((t, i) => (
+            <div class:list={[{"tag-extra": i >= INITIAL_COUNT}]}>
+                <ButtonTag href={getTagUrl(t.name)} label={`View all posts with the ${t.name.trim()} tag`}>
+                    {t.name.trim()}
+                </ButtonTag>
+            </div>
         ))}
     </div>
+    {hasMore && (
+        <div class="px-4 mt-3">
+            <button id="tag-toggle" class="btn-plain rounded-lg w-full h-9">
+                <div class="text-[var(--primary)] flex items-center justify-center">
+                    <svg id="tag-toggle-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
+                    </svg>
+                </div>
+            </button>
+        </div>
+    )}
 </WidgetLayout>
+
+<style>
+    .tag-extra {
+        display: none;
+    }
+</style>
+
+<script>
+    const btn = document.getElementById('tag-toggle');
+    const icon = document.getElementById('tag-toggle-icon');
+    const extraTags = document.querySelectorAll('.tag-extra');
+    let expanded = false;
+
+    const dotsPath = '<circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>';
+    const chevronPath = '<path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+
+    btn?.addEventListener('click', () => {
+        expanded = !expanded;
+        extraTags.forEach(tag => tag.classList.toggle('tag-extra', !expanded));
+        if (icon) icon.innerHTML = expanded ? chevronPath : dotsPath;
+    });
+</script>
