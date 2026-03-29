@@ -78,6 +78,13 @@ export type Category = {
 	url: string;
 };
 
+export type CategoryNode = {
+	name: string;
+	count: number;
+	url: string;
+	children: CategoryNode[];
+};
+
 export async function getCategoryList(): Promise<Category[]> {
 	const allBlogPosts = await getCollection<"posts">("posts", ({ data }) => {
 		return import.meta.env.PROD ? data.draft !== true : true;
@@ -111,4 +118,80 @@ export async function getCategoryList(): Promise<Category[]> {
 		});
 	}
 	return ret;
+}
+
+export async function getCategoryTree(): Promise<CategoryNode[]> {
+	const allBlogPosts = await getCollection<"posts">("posts", ({ data }) => {
+		return import.meta.env.PROD ? data.draft !== true : true;
+	});
+
+	const tree = new Map<
+		string,
+		{ count: number; children: Map<string, number> }
+	>();
+
+	for (const post of allBlogPosts) {
+		const category = post.data.category?.trim();
+		if (!category) continue;
+
+		if (!tree.has(category)) {
+			tree.set(category, { count: 0, children: new Map() });
+		}
+
+		const node = tree.get(category);
+		if (!node) continue;
+		node.count++;
+
+		const sub = post.data.subcategory?.trim();
+		if (sub) {
+			node.children.set(sub, (node.children.get(sub) || 0) + 1);
+		}
+	}
+
+	const CATEGORY_ORDER: Record<string, number> = {
+		Diary: 0,
+		CS: 1,
+		DSA: 2,
+		AI: 3,
+		Dev: 4,
+	};
+
+	const SUBCATEGORY_ORDER: Record<string, Record<string, number>> = {
+		AI: { Foundation: 0, NLP: 1, CV: 2 },
+		CS: { OS: 0, CA: 1, DB: 2, Network: 3 },
+		Dev: { frontend: 0, backend: 1, study: 2 },
+	};
+
+	const sorted = [...tree.keys()].sort((a, b) => {
+		const orderA = CATEGORY_ORDER[a] ?? 999;
+		const orderB = CATEGORY_ORDER[b] ?? 999;
+		if (orderA !== orderB) return orderA - orderB;
+		return a.toLowerCase().localeCompare(b.toLowerCase());
+	});
+
+	return sorted.flatMap((cat) => {
+		const node = tree.get(cat);
+		if (!node) return [];
+		const subOrder = SUBCATEGORY_ORDER[cat] ?? {};
+		const children = [...node.children.keys()]
+			.sort((a, b) => {
+				const oA = subOrder[a] ?? 999;
+				const oB = subOrder[b] ?? 999;
+				if (oA !== oB) return oA - oB;
+				return a.toLowerCase().localeCompare(b.toLowerCase());
+			})
+			.map((sub) => ({
+				name: sub,
+				count: node.children.get(sub) ?? 0,
+				url: getCategoryUrl(cat, sub),
+				children: [],
+			}));
+
+		return {
+			name: cat,
+			count: node.count,
+			url: getCategoryUrl(cat),
+			children,
+		};
+	});
 }

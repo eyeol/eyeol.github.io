@@ -1,16 +1,10 @@
 ---
 import I18nKey from "../../i18n/i18nKey";
 import { i18n } from "../../i18n/translation";
-import { getCategoryList } from "../../utils/content-utils";
-import ButtonLink from "../control/ButtonLink.astro";
+import { getCategoryTree } from "../../utils/content-utils";
 import WidgetLayout from "./WidgetLayout.astro";
 
-const categories = await getCategoryList();
-
-const COLLAPSED_HEIGHT = "7.5rem";
-const COLLAPSE_THRESHOLD = 5;
-
-const isCollapsed = categories.length >= COLLAPSE_THRESHOLD;
+const categoryTree = await getCategoryTree();
 
 interface Props {
 	class?: string;
@@ -20,16 +14,95 @@ const className = Astro.props.class;
 const style = Astro.props.style;
 ---
 
-<WidgetLayout name={i18n(I18nKey.categories)} id="categories" isCollapsed={isCollapsed} collapsedHeight={COLLAPSED_HEIGHT}
-                class={className} style={style}
+<WidgetLayout name={i18n(I18nKey.categories)} id="categories"
+              class={className} style={style}
 >
-    {categories.map((c) =>
-        <ButtonLink
-            url={c.url}
-            badge={String(c.count)}
-            label={`View all posts in the ${c.name.trim()} category`}
-        >
-            {c.name.trim()}
-        </ButtonLink>
+    {categoryTree.map((cat) =>
+        cat.children.length > 0 ? (
+            <div class="category-group">
+                <button class="cat-toggle flex items-center justify-between w-full h-10 rounded-lg
+                    px-2 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]
+                    text-neutral-700 dark:text-neutral-300
+                    hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
+                    transition-all"
+                    data-target={`sub-${cat.name}`}>
+                    <span>
+                        <span class="font-medium">{cat.name}</span>
+                        <span class="text-sm text-neutral-400 dark:text-neutral-500 ml-1">({cat.count})</span>
+                    </span>
+                    <svg class="accordion-arrow w-4 h-4 transition-transform text-neutral-400 dark:text-neutral-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+                <div id={`sub-${cat.name}`} class="subcategory-list pl-2">
+                    {cat.children.map((sub) =>
+                        <a href={sub.url}
+                           class="flex items-center gap-2 w-full h-9 px-2 rounded-lg
+                               text-sm text-neutral-600 dark:text-neutral-400
+                               hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]
+                               hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
+                               transition-all"
+                           aria-label={`View posts in ${cat.name}/${sub.name}`}>
+                            <span class="text-neutral-400 dark:text-neutral-500">&rsaquo;</span>
+                            <span>{sub.name}</span>
+                            <span class="text-xs text-neutral-400 dark:text-neutral-500">({sub.count})</span>
+                        </a>
+                    )}
+                </div>
+            </div>
+        ) : (
+            <a href={cat.url}
+               class="flex items-center w-full h-10 px-2 rounded-lg
+                   text-neutral-700 dark:text-neutral-300
+                   hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]
+                   hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
+                   transition-all"
+               aria-label={`View all posts in the ${cat.name} category`}>
+                <span class="font-medium">{cat.name}</span>
+                <span class="text-sm text-neutral-400 dark:text-neutral-500 ml-1">({cat.count})</span>
+            </a>
+        )
     )}
 </WidgetLayout>
+
+<script>
+    document.querySelectorAll('.cat-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = (btn as HTMLElement).dataset.target;
+            if (!targetId) return;
+            const list = document.getElementById(targetId);
+            if (!list) return;
+
+            const isOpen = list.classList.contains('open');
+            if (isOpen) {
+                list.style.maxHeight = list.scrollHeight + 'px';
+                requestAnimationFrame(() => {
+                    list.style.maxHeight = '0';
+                });
+                list.classList.remove('open');
+            } else {
+                list.style.maxHeight = list.scrollHeight + 'px';
+                list.classList.add('open');
+                list.addEventListener('transitionend', () => {
+                    if (list.classList.contains('open')) {
+                        list.style.maxHeight = 'none';
+                    }
+                }, { once: true });
+            }
+
+            const arrow = btn.querySelector('.accordion-arrow');
+            arrow?.classList.toggle('rotate-90');
+        });
+    });
+</script>
+
+<style>
+    .subcategory-list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+    }
+    .rotate-90 {
+        transform: rotate(90deg);
+    }
+</style>
