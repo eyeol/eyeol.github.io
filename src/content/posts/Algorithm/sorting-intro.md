@@ -1,10 +1,10 @@
 ---
 title: 정렬 알고리즘 개요
-published: 2026-02-21
-description: "선택 정렬, 버블 정렬 — 수도코드, 안정성(Stability)"
+published: 2026-03-30
+description: "정렬 문제 소개부터 선택·버블 정렬 분석, 안정성 개념까지"
 tags: [Algorithm, Sort, CLRS]
 category: Algorithm
-draft: true
+draft: false
 ---
 
 ## 정렬 문제
