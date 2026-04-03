@@ -94,8 +94,14 @@
 			"mdast-util-to-hast": "13.2.1",
 			"rollup": "4.60.1",
 			"serialize-javascript": "7.0.5",
+			"stylus>glob": "10.5.0",
+			"sucrase>glob": "10.5.0",
 			"undici": "6.24.1",
 			"vite": "6.4.1",
+			"glob@10.5.0>minimatch": "9.0.7",
+			"glob@7.2.3>minimatch": "3.1.4",
+			"filelist@1.0.4>minimatch": "5.1.8",
+			"jake>minimatch": "3.1.5",
 			"yaml": "2.8.3"
 		}
 	}
