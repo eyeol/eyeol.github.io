@@ -31,7 +31,7 @@ const style = Astro.props.style;
                         <span class="font-medium">{cat.name}</span>
                         <span class="text-sm text-neutral-400 dark:text-neutral-500 ml-1">({cat.count})</span>
                     </a>
-                    <button class="cat-toggle flex items-center justify-center w-8 h-8
+                    <button type="button" class="cat-toggle flex items-center justify-center w-8 h-8
                         text-neutral-400 dark:text-neutral-500 transition-all"
                         data-target={`sub-${cat.name}`}>
                         <svg class="accordion-arrow w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -71,34 +71,51 @@ const style = Astro.props.style;
 </WidgetLayout>
 
 <script>
-    document.querySelectorAll('.cat-toggle').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetId = (btn as HTMLElement).dataset.target;
-            if (!targetId) return;
-            const list = document.getElementById(targetId);
-            if (!list) return;
+    const toggleCategoryList = (btn: HTMLElement) => {
+        const targetId = btn.dataset.target;
+        if (!targetId) return;
 
-            const isOpen = list.classList.contains('open');
-            if (isOpen) {
-                list.style.maxHeight = list.scrollHeight + 'px';
-                requestAnimationFrame(() => {
-                    list.style.maxHeight = '0';
-                });
-                list.classList.remove('open');
-            } else {
-                list.style.maxHeight = list.scrollHeight + 'px';
-                list.classList.add('open');
-                list.addEventListener('transitionend', () => {
-                    if (list.classList.contains('open')) {
-                        list.style.maxHeight = 'none';
-                    }
-                }, { once: true });
-            }
+        const list = document.getElementById(targetId);
+        if (!list) return;
 
-            const arrow = btn.querySelector('.accordion-arrow');
-            arrow?.classList.toggle('rotate-90');
+        const isOpen = list.classList.contains('open');
+        if (isOpen) {
+            const currentHeight = list.scrollHeight;
+            list.style.maxHeight = `${currentHeight}px`;
+            requestAnimationFrame(() => {
+                list.style.maxHeight = '0';
+            });
+            list.classList.remove('open');
+        } else {
+            list.style.maxHeight = '0';
+            list.classList.add('open');
+            requestAnimationFrame(() => {
+                list.style.maxHeight = `${list.scrollHeight}px`;
+            });
+            list.addEventListener('transitionend', () => {
+                if (list.classList.contains('open')) {
+                    list.style.maxHeight = 'none';
+                }
+            }, { once: true });
+        }
+
+        const arrow = btn.querySelector('.accordion-arrow');
+        arrow?.classList.toggle('rotate-90', !isOpen);
+    };
+
+    if (!document.documentElement.dataset.categoryToggleBound) {
+        document.addEventListener('click', (event) => {
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+
+            const btn = target.closest('.cat-toggle');
+            if (!(btn instanceof HTMLElement)) return;
+
+            toggleCategoryList(btn);
         });
-    });
+
+        document.documentElement.dataset.categoryToggleBound = 'true';
+    }
 </script>
 
 <style>
