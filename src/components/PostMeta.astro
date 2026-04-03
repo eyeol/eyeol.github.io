@@ -11,6 +11,7 @@ interface Props {
 	updated?: Date;
 	tags: string[];
 	category: string | null;
+	subcategory?: string | null;
 	hideTagsForMobile?: boolean;
 	hideUpdateDate?: boolean;
 }
@@ -19,6 +20,7 @@ const {
 	updated,
 	tags,
 	category,
+	subcategory,
 	hideTagsForMobile = false,
 	hideUpdateDate = false,
 } = Astro.props;
@@ -58,6 +60,16 @@ const className = Astro.props.class;
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
                 {category || i18n(I18nKey.uncategorized)}
             </a>
+            {subcategory?.trim() && (
+                <>
+                    <span class="mx-1.5 text-[var(--meta-divider)] text-sm">/</span>
+                    <a href={getCategoryUrl(category, subcategory)} aria-label={`View all posts in ${category}/${subcategory}`}
+                       class="link-lg transition text-50 text-sm font-medium
+                                    hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
+                        {subcategory.trim()}
+                    </a>
+                </>
+            )}
         </div>
     </div>
 
