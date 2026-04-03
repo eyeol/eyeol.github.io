@@ -162,23 +162,23 @@ const years = Object.keys(groupedByYear)
         ))}
     </div>
     </category-view-toggle>
-    <script is:inline>
+    <script>
     class CategoryViewToggle extends HTMLElement {
         connectedCallback() {
             if (this.dataset.initialized === 'true') return;
             this.dataset.initialized = 'true';
 
-            const btnCard = this.querySelector('[data-view="card"]');
-            const btnList = this.querySelector('[data-view="list"]');
-            const viewCard = this.querySelector('[data-panel="card"]');
-            const viewList = this.querySelector('[data-panel="list"]');
+            const btnCard = this.querySelector('[data-view="card"]') as HTMLElement | null;
+            const btnList = this.querySelector('[data-view="list"]') as HTMLElement | null;
+            const viewCard = this.querySelector('[data-panel="card"]') as HTMLElement | null;
+            const viewList = this.querySelector('[data-panel="list"]') as HTMLElement | null;
 
             if (!btnCard || !btnList || !viewCard || !viewList) return;
 
             const activeStyle = 'color: var(--primary); background-color: var(--btn-plain-bg-hover);';
             const storage = sessionStorage;
 
-            function setView(mode, animate = false) {
+            function setView(mode: string, animate = false) {
                 const showPanel = mode === 'card' ? viewCard : viewList;
                 const hidePanel = mode === 'card' ? viewList : viewCard;
                 const activeBtn = mode === 'card' ? btnCard : btnList;
