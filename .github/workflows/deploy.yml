@@ -5,6 +5,9 @@ on:
     branches: [ main ]   # ← 기본 브랜치명에 맞춰 수정 (master면 master로)
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write
