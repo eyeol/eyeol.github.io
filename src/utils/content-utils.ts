@@ -161,7 +161,7 @@ export async function getCategoryTree(): Promise<CategoryNode[]> {
 	const SUBCATEGORY_ORDER: Record<string, Record<string, number>> = {
 		AI: { Foundation: 0, NLP: 1, CV: 2 },
 		CS: { OS: 0, CA: 1, DB: 2, Network: 3 },
-		Dev: { frontend: 0, backend: 1, study: 2 },
+		Dev: { Frontend: 0, Backend: 1, Study: 2 },
 	};
 
 	const sorted = [...tree.keys()].sort((a, b) => {

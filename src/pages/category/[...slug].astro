@@ -59,8 +59,6 @@ const filteredPosts = allPosts.filter((post) => {
 	return true;
 });
 
-const title = subcategory ? `${category} / ${subcategory}` : category;
-
 // Group posts by year for list view
 const groupedByYear = filteredPosts.reduce(
 	(acc, post) => {
@@ -76,10 +74,12 @@ const years = Object.keys(groupedByYear)
 	.sort((a, b) => b - a);
 ---
 
-<MainGridLayout title={title}>
+<MainGridLayout title={category}>
     <category-view-toggle>
     <div class="flex justify-between items-center mb-4">
-        <h1 class="text-2xl font-bold text-90 transition">{title}</h1>
+        <h1 class="text-2xl font-bold text-90 transition">
+            {subcategory ? `${category} / ${subcategory}` : category}
+        </h1>
         <div class="flex gap-1">
             <button data-view="card" class="view-btn p-2 rounded-lg transition hover:bg-[var(--btn-plain-bg-hover)]"
                     aria-label="Card view"

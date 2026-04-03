@@ -4,7 +4,7 @@ published: 2025-11-26
 description: 기술 트렌드 & 지식 교류 스터디 1주차
 tags: [WT3, TPU]
 category: Dev
-subcategory: study
+subcategory: Study
 draft: false
 ---
 
