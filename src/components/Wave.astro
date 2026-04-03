@@ -41,6 +41,7 @@
    (Fuwari가 html에 bg-[var(--page-bg)]를 쓰므로 다크모드도 자동 연동) */
 .parallax use{
   fill: var(--page-bg);
+  transition: fill 150ms cubic-bezier(0.4, 0, 0.2, 1);
   animation: wave 25s cubic-bezier(0.5,0.5,0.45,0.5) infinite;
   will-change: transform;
 }
