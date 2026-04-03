@@ -1,7 +1,7 @@
 ---
 title: 정렬 알고리즘 개요
 published: 2026-03-30
-description: "정렬 문제 소개부터 선택·버블 정렬 분석, 안정성 개념까지"
+description: "정렬 문제 소개부터 선택·버블 정렬 분석, 안정성 개념까지 정리한다"
 tags: [Algorithm, Sort, CLRS]
 category: Algorithm
 draft: false
