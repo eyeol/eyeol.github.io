@@ -152,6 +152,15 @@ const bannerOffset =
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
 
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-K0ME5EWWRG" is:inline></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-K0ME5EWWRG');
+		</script>
+
 	</head>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
@@ -413,6 +422,11 @@ const setup = () => {
 		}
 	});
 	window.swup.hooks.on('page:view', () => {
+		// Track pageview on Swup page transition
+		if (typeof gtag !== 'undefined') {
+			gtag('event', 'page_view', { page_path: window.location.pathname });
+		}
+
 		// hide the temp high element when the transition is done
 		const heightExtend = document.getElementById('page-height-extend')
 		if (heightExtend) {
