@@ -13,6 +13,7 @@ import type { LIGHT_DARK_MODE } from "@/types/config.ts";
 
 const seq: LIGHT_DARK_MODE[] = [LIGHT_MODE, DARK_MODE];
 let mode: LIGHT_DARK_MODE = $state(AUTO_MODE);
+let systemDark: boolean = $state(false);
 
 const icons = {
 	[LIGHT_MODE]: "line-md:moon-alt-to-sunny-outline-loop-transition",
@@ -20,12 +21,16 @@ const icons = {
 	[AUTO_MODE]: "line-md:computer-twotone",
 };
 
+let displayMode = $derived(mode === AUTO_MODE ? (systemDark ? DARK_MODE : LIGHT_MODE) : mode);
+
 onMount(() => {
 	mode = getStoredTheme();
 	const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
+	systemDark = darkModePreference.matches;
 	const changeThemeWhenSchemeChanged: Parameters<
 		typeof darkModePreference.addEventListener<"change">
 	>[1] = (_e) => {
+		systemDark = darkModePreference.matches;
 		applyThemeToDocument(mode);
 	};
 	darkModePreference.addEventListener("change", changeThemeWhenSchemeChanged);
@@ -55,13 +60,10 @@ function toggleScheme() {
 </script>
 
 <button aria-label="Light/Dark Mode" class="relative btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90" id="scheme-switch" onclick={toggleScheme}>
-    <div class="absolute" class:opacity-0={mode !== LIGHT_MODE}>
+    <div class="absolute" class:opacity-0={displayMode !== LIGHT_MODE}>
         <Icon icon={icons[LIGHT_MODE]} class="text-[1.25rem]"></Icon>
     </div>
-    <div class="absolute" class:opacity-0={mode !== DARK_MODE}>
+    <div class="absolute" class:opacity-0={displayMode !== DARK_MODE}>
         <Icon icon={icons[DARK_MODE]} class="text-[1.25rem]"></Icon>
-    </div>
-    <div class="absolute" class:opacity-0={mode !== AUTO_MODE}>
-        <Icon icon={icons[AUTO_MODE]} class="text-[1.25rem]"></Icon>
     </div>
 </button>
