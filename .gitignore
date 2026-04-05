@@ -33,4 +33,6 @@ yarn.lock
 # claude
 CLAUDE.md
 .claude/
+.codex
+.codex/
 DRAFTS.md
