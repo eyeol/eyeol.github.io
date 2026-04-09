@@ -4,11 +4,18 @@ import {
 	DEFAULT_THEME,
 	LIGHT_MODE,
 } from "@constants/constants.ts";
-import { expressiveCodeConfig } from "@/config";
+import { expressiveCodeConfig, siteConfig } from "@/config";
 import type { LIGHT_DARK_MODE } from "@/types/config";
 
+function readStorage(key: string): string | null {
+	if (typeof localStorage === "undefined") {
+		return null;
+	}
+	return localStorage.getItem(key);
+}
+
 export function getDefaultHue(): number {
-	const fallback = "250";
+	const fallback = String(siteConfig.themeColor.hue);
 	if (typeof document === "undefined") {
 		return Number.parseInt(fallback, 10);
 	}
@@ -17,23 +24,33 @@ export function getDefaultHue(): number {
 }
 
 export function getHue(): number {
-	if (typeof localStorage === "undefined") {
+	if (siteConfig.themeColor.fixed) {
 		return getDefaultHue();
 	}
-	const stored = localStorage.getItem("hue");
+	const stored = readStorage("hue");
 	return stored ? Number.parseInt(stored, 10) : getDefaultHue();
 }
 
 export function setHue(hue: number): void {
-	if (typeof localStorage === "undefined" || typeof document === "undefined") {
+	if (typeof document === "undefined") {
 		return;
 	}
-	localStorage.setItem("hue", String(hue));
+
+	const nextHue = siteConfig.themeColor.fixed ? getDefaultHue() : hue;
+
+	if (typeof localStorage !== "undefined") {
+		if (siteConfig.themeColor.fixed) {
+			localStorage.removeItem("hue");
+		} else {
+			localStorage.setItem("hue", String(nextHue));
+		}
+	}
+
 	const r = document.querySelector(":root") as HTMLElement;
 	if (!r) {
 		return;
 	}
-	r.style.setProperty("--hue", String(hue));
+	r.style.setProperty("--hue", String(nextHue));
 }
 
 export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
@@ -68,16 +85,17 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 }
 
 export function setTheme(theme: LIGHT_DARK_MODE): void {
-	if (typeof localStorage === "undefined") {
-		return;
+	if (typeof localStorage !== "undefined") {
+		localStorage.setItem("theme", theme);
 	}
-	localStorage.setItem("theme", theme);
 	applyThemeToDocument(theme);
 }
 
 export function getStoredTheme(): LIGHT_DARK_MODE {
-	if (typeof localStorage === "undefined") {
-		return DEFAULT_THEME;
-	}
-	return (localStorage.getItem("theme") as LIGHT_DARK_MODE) || DEFAULT_THEME;
+	return (readStorage("theme") as LIGHT_DARK_MODE) || DEFAULT_THEME;
+}
+
+export function syncThemeAndHue(): void {
+	applyThemeToDocument(getStoredTheme());
+	setHue(getHue());
 }
