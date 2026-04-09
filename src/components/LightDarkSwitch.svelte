@@ -1,7 +1,5 @@
 <script lang="ts">
 import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "@constants/constants.ts";
-import I18nKey from "@i18n/i18nKey";
-import { i18n } from "@i18n/translation";
 import Icon from "@iconify/svelte";
 import {
 	applyThemeToDocument,
@@ -14,8 +12,7 @@ import type { LIGHT_DARK_MODE } from "@/types/config.ts";
 const seq: LIGHT_DARK_MODE[] = [LIGHT_MODE, DARK_MODE];
 let mode: LIGHT_DARK_MODE = $state(AUTO_MODE);
 let systemDark: boolean = $state(false);
-
-const icons = {
+const icons: Record<LIGHT_DARK_MODE, string> = {
 	[LIGHT_MODE]: "line-md:moon-alt-to-sunny-outline-loop-transition",
 	[DARK_MODE]: "line-md:sunny-outline-to-moon-alt-loop-transition",
 	[AUTO_MODE]: "line-md:computer-twotone",
@@ -60,10 +57,7 @@ function toggleScheme() {
 </script>
 
 <button aria-label="Light/Dark Mode" class="relative btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90" id="scheme-switch" onclick={toggleScheme}>
-    <div class="absolute" class:opacity-0={displayMode !== LIGHT_MODE}>
-        <Icon icon={icons[LIGHT_MODE]} class="text-[1.25rem]"></Icon>
-    </div>
-    <div class="absolute" class:opacity-0={displayMode !== DARK_MODE}>
-        <Icon icon={icons[DARK_MODE]} class="text-[1.25rem]"></Icon>
+    <div class="absolute inset-0 flex items-center justify-center">
+        <Icon icon={icons[displayMode]} class="block text-[1.25rem]" />
     </div>
 </button>
