@@ -4,8 +4,8 @@ import type {
 	NavBarConfig,
 	ProfileConfig,
 	SiteConfig,
-} from "./types/config";
-import { LinkPreset } from "./types/config";
+} from "./types/config.ts";
+import { LinkPreset } from "./types/config.ts";
 
 export const siteConfig: SiteConfig = {
 	title: "Baleine d'Étain",
