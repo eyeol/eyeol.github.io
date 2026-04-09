@@ -50,6 +50,7 @@ if (!banner || typeof banner !== "string" || banner.trim() === "") {
 banner = siteConfig.banner.src;
 
 const enableBanner = siteConfig.banner.enable;
+const themeColorFixed = siteConfig.themeColor.fixed;
 
 let pageTitle: string;
 if (title) {
@@ -115,7 +116,7 @@ const bannerOffset =
 		))}
 
 		<!-- Set the theme before the page is rendered to avoid a flash -->
-		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, BANNER_HEIGHT_EXTEND, PAGE_WIDTH, configHue}}>
+		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, BANNER_HEIGHT_EXTEND, PAGE_WIDTH, configHue, themeColorFixed}}>
 			// Load the theme from local storage
 			const theme = localStorage.getItem('theme') || DEFAULT_THEME;
 			switch (theme) {
@@ -134,7 +135,7 @@ const bannerOffset =
 			}
 
 			// Load the hue from local storage
-			const hue = localStorage.getItem('hue') || configHue;
+			const hue = themeColorFixed ? configHue : (localStorage.getItem('hue') || configHue);
 			document.documentElement.style.setProperty('--hue', hue);
 
 			// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
@@ -217,7 +218,7 @@ import {
 	// SizeObserverPlugin,
 	// ClickScrollPlugin
 } from 'overlayscrollbars';
-import {getHue, getStoredTheme, setHue, setTheme} from "../utils/setting-utils";
+import {syncThemeAndHue} from "../utils/setting-utils";
 import {pathsEqual, url} from "../utils/url-utils";
 import {
 	BANNER_HEIGHT,
@@ -293,12 +294,7 @@ setClickOutsideToClose("search-panel", ["search-panel", "search-bar", "search-sw
 
 
 function loadTheme() {
-	const theme = getStoredTheme()
-	setTheme(theme)
-}
-
-function loadHue() {
-	setHue(getHue())
+	syncThemeAndHue()
 }
 
 function initCustomScrollbar() {
@@ -362,7 +358,6 @@ function showBanner() {
 function init() {
 	// disableAnimation()()		// TODO
 	loadTheme();
-	loadHue();
 	initCustomScrollbar();
 	showBanner();
 }

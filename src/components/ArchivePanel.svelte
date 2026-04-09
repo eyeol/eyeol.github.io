@@ -14,7 +14,7 @@ interface Post {
 	data: {
 		title: string;
 		tags: string[];
-		category?: string;
+		category?: string | null;
 		published: Date;
 	};
 }
@@ -24,14 +24,37 @@ interface Group {
 	posts: Post[];
 }
 
-let groups: Group[] = [];
 let uncategorized: string | null = null;
+let groups: Group[] = groupPosts(sortedPosts);
 
 function updateFiltersFromLocation() {
 	const params = new URLSearchParams(window.location.search);
 	tags = params.has("tag") ? params.getAll("tag") : [];
 	categories = params.has("category") ? params.getAll("category") : [];
 	uncategorized = params.get("uncategorized");
+}
+
+function groupPosts(posts: Post[]) {
+	const grouped = posts.reduce(
+		(acc, post) => {
+			const year = post.data.published.getFullYear();
+			if (!acc[year]) {
+				acc[year] = [];
+			}
+			acc[year].push(post);
+			return acc;
+		},
+		{} as Record<number, Post[]>,
+	);
+
+	const groupedPostsArray = Object.keys(grouped).map((yearStr) => ({
+		year: Number.parseInt(yearStr, 10),
+		posts: grouped[Number.parseInt(yearStr, 10)],
+	}));
+
+	groupedPostsArray.sort((a, b) => b.year - a.year);
+
+	return groupedPostsArray;
 }
 
 function updateGroups() {
@@ -55,26 +78,7 @@ function updateGroups() {
 		filteredPosts = filteredPosts.filter((post) => !post.data.category);
 	}
 
-	const grouped = filteredPosts.reduce(
-		(acc, post) => {
-			const year = post.data.published.getFullYear();
-			if (!acc[year]) {
-				acc[year] = [];
-			}
-			acc[year].push(post);
-			return acc;
-		},
-		{} as Record<number, Post[]>,
-	);
-
-	const groupedPostsArray = Object.keys(grouped).map((yearStr) => ({
-		year: Number.parseInt(yearStr, 10),
-		posts: grouped[Number.parseInt(yearStr, 10)],
-	}));
-
-	groupedPostsArray.sort((a, b) => b.year - a.year);
-
-	groups = groupedPostsArray;
+	groups = groupPosts(filteredPosts);
 }
 
 function formatDate(date: Date) {

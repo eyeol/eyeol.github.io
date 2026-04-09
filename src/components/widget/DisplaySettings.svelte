@@ -3,10 +3,12 @@ import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import Icon from "@iconify/svelte";
 import { getDefaultHue, getHue, setHue } from "@utils/setting-utils";
+import { siteConfig } from "@/config";
 import { onMount } from "svelte";
 
-let hue = 250;
-let defaultHue = 250;
+let hue = siteConfig.themeColor.hue;
+let defaultHue = siteConfig.themeColor.hue;
+let mounted = false;
 
 function resetHue() {
 	hue = getDefaultHue();
@@ -15,9 +17,10 @@ function resetHue() {
 onMount(() => {
 	defaultHue = getDefaultHue();
 	hue = getHue();
+	mounted = true;
 });
 
-$: if (hue || hue === 0) {
+$: if (mounted && (hue || hue === 0)) {
 	setHue(hue);
 }
 </script>
