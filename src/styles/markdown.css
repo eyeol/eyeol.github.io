@@ -101,6 +101,18 @@
         }
     }
 
+    img {
+        @apply max-w-full h-auto;
+    }
+
+    > div[style*="width"] {
+        max-width: 100%;
+    }
+
+    table {
+        @apply block overflow-x-auto;
+    }
+
     blockquote {
         @apply not-italic border-transparent relative;
         font-weight: inherit;

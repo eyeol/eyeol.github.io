@@ -9,11 +9,7 @@ draft: false
 
 ## 링크드 리스트 문제를 풀다가..
 
-<div style="width: 800px;">
-
 ![링크드 리스트 문제](./images/lc150_141.png)
-
-</div>
 LeetCode Top Interview 150의 141번 문제다.<br>
 
 링크드 리스트에 사이클이 있는지 확인하면 되는데<br>
@@ -106,11 +102,7 @@ return하는 값을 slow에서 True로, None에서 False로 바꿔주면 된다.
 
 시점을 나눠서 이해해보자.
 
-<div style="width: 700px;">
-
 ![사이클이 있는 그래프](./images/cycle_graph.png)
-
-</div>
 
 거북이와 토끼의 보폭은 각각 1과 2이기 때문에<br>
 둘의 격차는 매 움직임마다 1씩 벌어지게 된다.
@@ -159,11 +151,7 @@ def find_cycle_start(head, meet):
 이 부분도 정말 그러한지 수식으로 따져보자.
 
 
-<div style="width: 700px;">
-
 ![사이클이 있는 그래프](./images/cycle_graph_2.png)
-
-</div>
 
 포인터의 출발점(헤드)를 $H$, 사이클 시작점을 $S$, 거북이와 토끼가 만난 지점을 $m$이라 하고
 
