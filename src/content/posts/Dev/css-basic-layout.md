@@ -1,6 +1,6 @@
 ---
 title: "CSS 박스 모델과 display 속성"
-published: 2026-04-14
+published: 2026-04-14T10:00:00
 description: "박스 모델, display, 속성 상속까지 CSS 레이아웃의 기초를 정리한다"
 tags: [CSS, Frontend]
 category: Dev
