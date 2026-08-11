@@ -1,5 +1,5 @@
 ---
-title: 병합 정렬
+title: 분할 정복과 병합 정렬
 published: 2026-08-08
 description: 분할 정복으로 정렬하는 병합 정렬의 원리와 구현
 tags: [Algorithm, Sorting, Divide and conquer, Python]
